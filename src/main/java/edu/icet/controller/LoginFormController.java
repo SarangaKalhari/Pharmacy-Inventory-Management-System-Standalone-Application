@@ -45,7 +45,7 @@ public class LoginFormController {
     public void pharmacistLogin(ActionEvent actionEvent) {
         if (txtUsername.getText().equals("Pharmacist") && txtPassword.getText().equals("1234")){
             try {
-                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/dashboard.fxml"))));
+                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/PharmacistDashboard.fxml"))));
 
                 Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                 currentStage.close();
@@ -60,7 +60,7 @@ public class LoginFormController {
     public void adminLogin(ActionEvent actionEvent) {
         if (txtUsername.getText().equals("Admin") && txtPassword.getText().equals("1234")){
             try {
-                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/dashboard.fxml"))));
+                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/AdminDashboard.fxml"))));
 
                 Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                 currentStage.close();
@@ -75,7 +75,7 @@ public class LoginFormController {
     public void cashierLogin(ActionEvent actionEvent) {
         if (txtUsername.getText().equals("Cashier") && txtPassword.getText().equals("1234")){
             try {
-                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/dashboard.fxml"))));
+                stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/CashierBillingDashboard.fxml"))));
 
                 Stage currentStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                 currentStage.close();
