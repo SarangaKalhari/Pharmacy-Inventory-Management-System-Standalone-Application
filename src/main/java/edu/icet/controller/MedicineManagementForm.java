@@ -140,6 +140,9 @@ public class MedicineManagementForm implements Initializable {
         );
         service.updateMedicine(txtMedID.getText(),medicineDTO);
 
+        loadMedicineTable();
+        clear();
+
     }
 
     @FXML
@@ -164,6 +167,21 @@ public class MedicineManagementForm implements Initializable {
         tblMedicine.setItems(service.loadMedicine());
 
         comboSupID.setItems(service.getSupplierID());
+
+        tblMedicine.getSelectionModel().selectedItemProperty().addListener((observableValue, medicine, t1) -> {
+            if (t1 != null){
+                txtMedID.setText(t1.getMedicine_id());
+                txtMedName.setText(t1.getName());
+                txtBrand.setText(t1.getBrand());
+                comboSupID.setValue(t1.getSupplier_id());
+                txtBatchNo.setText(t1.getBatch_no());
+                txtQty.setText(String.valueOf(t1.getQuantity()));
+                txtCost.setText(String.valueOf(t1.getCost()));
+                txtPrice.setText(String.valueOf(t1.getUnit_price()));
+                datePicker.setValue(t1.getExpiry_date());
+                txtCategory.setText(t1.getCategory());
+            }
+        });
 
     }
 
