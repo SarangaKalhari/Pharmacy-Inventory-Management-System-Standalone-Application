@@ -66,4 +66,18 @@ public class MedicineRepository {
             throw new RuntimeException(e);
         }
     }
+
+    public void delete(String text) {
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM medicine WHERE medicine_id=?");
+
+            statement.setString(1,text);
+            statement.execute();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

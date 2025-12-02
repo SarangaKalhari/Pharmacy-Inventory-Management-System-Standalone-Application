@@ -110,6 +110,10 @@ public class MedicineManagementForm implements Initializable {
     @FXML
     void deleteOnAction(ActionEvent event) {
 
+        service.deleteMedicine(txtMedID.getText());
+
+        loadMedicineTable();
+        clear();
     }
 
     @FXML

@@ -83,4 +83,7 @@ public class MedicineManagementService {
     }
 
 
+    public void deleteMedicine(String text) {
+        repository.delete(text);
+    }
 }
