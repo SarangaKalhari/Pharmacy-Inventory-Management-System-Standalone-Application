@@ -2,7 +2,10 @@ package edu.icet.controller;
 
 import edu.icet.model.DTO.MedicineDTO;
 import edu.icet.model.Entity.Medicine;
+import edu.icet.repository.MedicineRepository;
 import edu.icet.service.MedicineManagementService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +19,7 @@ import java.util.ResourceBundle;
 
 public class MedicineManagementForm implements Initializable {
 
+    ObservableList<Medicine> medicineList = FXCollections.observableArrayList();
     MedicineManagementService service = new MedicineManagementService();
 
     @FXML
@@ -49,7 +53,7 @@ public class MedicineManagementForm implements Initializable {
     private TableColumn<?, ?> colUnitPrice;
 
     @FXML
-    private ComboBox<?> comboSupID;
+    private ComboBox<String> comboSupID;
 
     @FXML
     private TextField txtBatchNo;
@@ -85,6 +89,22 @@ public class MedicineManagementForm implements Initializable {
     @FXML
     void addOnAction(ActionEvent event) {
 
+        String name = txtMedName.getText();
+        String brand = txtBrand.getText();
+        String batchNo = txtBatchNo.getText();
+        int qty = Integer.parseInt(txtQty.getText());
+        BigDecimal cost = new BigDecimal(txtCost.getText());
+        BigDecimal price = new BigDecimal(txtPrice.getText());
+        LocalDate expDate = datePicker.getValue();
+        String category = txtCategory.getText();
+        String supplierId = String.valueOf(comboSupID.getValue());
+
+        MedicineDTO medicineDTO = new MedicineDTO(name, brand, supplierId, batchNo, qty, cost, price,expDate, category);
+
+        service.addMedicine(medicineDTO);
+
+        loadMedicineTable();
+        clear();
     }
 
     @FXML
@@ -123,5 +143,26 @@ public class MedicineManagementForm implements Initializable {
 
         tblMedicine.setItems(service.loadMedicine());
 
+        comboSupID.setItems(service.getSupplierID());
+
+    }
+
+    public void loadMedicineTable(){
+        medicineList.clear();
+        tblMedicine.setItems(service.loadMedicine());
+    }
+
+    void clear(){
+        txtMedID.clear();
+        txtMedName.clear();
+        txtBrand.clear();
+        txtBatchNo.clear();
+        txtQty.clear();
+        txtCost.clear();
+        txtPrice.clear();
+        txtCategory.clear();
+
+        comboSupID.setValue(null);
+        datePicker.setValue(null);
     }
 }

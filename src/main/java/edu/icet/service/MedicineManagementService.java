@@ -40,13 +40,47 @@ public class MedicineManagementService {
                 ));
             }
 
-
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return medicineObservableList;
     }
+
+    public ObservableList<String> getSupplierID(){
+        return repository.getSupplierID();
+    }
+
+    private String getMedID() {
+        String lastID = repository.getID();
+        if (lastID != null) {
+            String numberPart = lastID.replaceAll("[^0-9]", "");
+            int numericID = Integer.parseInt(numberPart);
+            numericID++;
+            return "MED" + numericID;
+        } else {
+            return "MED1001";
+        }
+
+    }
+
+    public void addMedicine(MedicineDTO medicineDTO) {
+
+        Medicine medicine = new Medicine(
+                getMedID(),
+                medicineDTO.getName(),
+                medicineDTO.getBrand(),
+                medicineDTO.getSupplierID(),
+                medicineDTO.getBatchNo(),
+                medicineDTO.getQuantity(),
+                medicineDTO.getCost(),
+                medicineDTO.getUnitPrice(),
+                medicineDTO.getExpiryDate(),
+                medicineDTO.getCategory()
+        );
+
+        repository.add(medicine);
+    }
+
 
 }
