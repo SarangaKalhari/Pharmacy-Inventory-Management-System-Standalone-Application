@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -26,7 +27,6 @@
       <TextField fx:id="txtBatchNo" layoutX="577.0" layoutY="115.0" promptText="Batch No." style="-fx-border-color: black; -fx-border-radius: 10px;" />
       <ComboBox fx:id="comboSupID" layoutX="756.0" layoutY="174.0" prefHeight="26.0" prefWidth="151.0" promptText="Supplier ID" />
       <TextField fx:id="txtPrice" layoutX="201.0" layoutY="174.0" promptText="price" style="-fx-border-color: black; -fx-border-radius: 10px;" />
-      <TextField fx:id="txtExpDate" layoutX="387.0" layoutY="174.0" promptText="Exp_Date" style="-fx-border-color: black; -fx-border-radius: 10px;" />
       <TextField fx:id="txtCategory" layoutX="577.0" layoutY="174.0" promptText="Category" style="-fx-border-color: black; -fx-border-radius: 10px;" />
       <TextField fx:id="txtBrand" layoutX="388.0" layoutY="115.0" promptText="Brand" style="-fx-border-color: black; -fx-border-radius: 10px;" />
       <TextField fx:id="txtMedID" layoutX="22.0" layoutY="115.0" promptText="Med_ID" style="-fx-border-color: black; -fx-border-radius: 10px;" />
@@ -50,18 +50,18 @@
             <Font name="Segoe UI Bold" size="14.0" />
          </font>
       </Button>
-      <TableView layoutX="22.0" layoutY="307.0" prefHeight="292.0" prefWidth="902.0">
+      <TableView fx:id="tblMedicine" layoutX="22.0" layoutY="307.0" prefHeight="292.0" prefWidth="907.0">
         <columns>
-          <TableColumn fx:id="colMedID" prefWidth="75.0" text="Medicine_ID" />
-          <TableColumn fx:id="colName" prefWidth="103.20001220703125" text="Name" />
-            <TableColumn fx:id="colBrand" prefWidth="89.59999084472656" text="Brand" />
-            <TableColumn fx:id="colBatchNo" prefWidth="69.60003662109375" text="Batch_No" />
-            <TableColumn fx:id="colQty" prefWidth="58.39996337890625" text="Qty" />
-            <TableColumn fx:id="colCost" prefWidth="95.20001220703125" text="Cost" />
-            <TableColumn fx:id="colUnitPrice" prefWidth="92.0" text="Unit_Price" />
-            <TableColumn fx:id="colExp" prefWidth="92.79998779296875" text="Exp_Date" />
-            <TableColumn fx:id="colCategory" prefWidth="128.7999267578125" text="Category" />
-            <TableColumn fx:id="colSupID" prefWidth="92.800048828125" text="Supplier_ID" />
+          <TableColumn fx:id="colMedID" prefWidth="90.39999008178711" text="Medicine_ID" />
+          <TableColumn fx:id="colName" prefWidth="111.99996948242188" text="Name" />
+            <TableColumn fx:id="colBrand" prefWidth="92.80006408691406" text="Brand" />
+            <TableColumn fx:id="colBatchNo" prefWidth="89.60003662109375" text="Batch_No" />
+            <TableColumn fx:id="colQty" prefWidth="67.99993896484375" text="Qty" />
+            <TableColumn fx:id="colCost" prefWidth="87.20001220703125" text="Cost" />
+            <TableColumn fx:id="colUnitPrice" prefWidth="82.4000244140625" text="Unit_Price" />
+            <TableColumn fx:id="colExp" prefWidth="90.39996337890625" text="Exp_Date" />
+            <TableColumn fx:id="colCategory" prefWidth="104.800048828125" text="Category" />
+            <TableColumn fx:id="colSupID" prefWidth="91.199951171875" text="Supplier_ID" />
         </columns>
       </TableView>
       <Button layoutX="756.0" layoutY="233.0" mnemonicParsing="false" onAction="#reloadOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #f28135;" text="Reload" textFill="WHITE">
@@ -69,5 +69,6 @@
             <Font name="Segoe UI Bold" size="14.0" />
          </font>
       </Button>
+      <DatePicker fx:id="datePicker" layoutX="388.0" layoutY="174.0" prefHeight="26.0" prefWidth="151.0" />
    </children>
 </AnchorPane>
