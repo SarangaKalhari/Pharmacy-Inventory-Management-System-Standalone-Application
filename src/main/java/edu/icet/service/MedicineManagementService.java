@@ -86,4 +86,22 @@ public class MedicineManagementService {
     public void deleteMedicine(String text) {
         repository.delete(text);
     }
+
+    public void updateMedicine(String text, MedicineDTO medicineDTO) {
+
+        Medicine medicine = new Medicine(
+                text,
+                medicineDTO.getName(),
+                medicineDTO.getBrand(),
+                medicineDTO.getSupplierID(),
+                medicineDTO.getBatchNo(),
+                medicineDTO.getQuantity(),
+                medicineDTO.getCost(),
+                medicineDTO.getUnitPrice(),
+                medicineDTO.getExpiryDate(),
+                medicineDTO.getCategory()
+        );
+
+        repository.update(medicine);
+    }
 }

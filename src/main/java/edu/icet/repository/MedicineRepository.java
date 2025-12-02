@@ -80,4 +80,27 @@ public class MedicineRepository {
             throw new RuntimeException(e);
         }
     }
+
+    public void update(Medicine medicine) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE medicine SET name=?, brand=?, supplier_id=?, batch_no=?, quantity=?, cost=?, unit_price=?, expiry_date=?, category=? WHERE medicine_id=?");
+
+            preparedStatement.setObject(1,medicine.getName());
+            preparedStatement.setObject(2,medicine.getBrand());
+            preparedStatement.setObject(3,medicine.getSupplier_id());
+            preparedStatement.setObject(4,medicine.getBatch_no());
+            preparedStatement.setObject(5,medicine.getQuantity());
+            preparedStatement.setObject(6,medicine.getCost());
+            preparedStatement.setObject(7,medicine.getUnit_price());
+            preparedStatement.setObject(8,medicine.getExpiry_date());
+            preparedStatement.setObject(9,medicine.getCategory());
+            preparedStatement.setObject(10,medicine.getMedicine_id());
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -124,6 +124,22 @@ public class MedicineManagementForm implements Initializable {
     @FXML
     void updateOnAction(ActionEvent event) {
 
+        BigDecimal cost = new BigDecimal(txtCost.getText());
+        BigDecimal unitPrice = new BigDecimal(txtPrice.getText());
+
+        MedicineDTO medicineDTO = new MedicineDTO(
+                txtMedName.getText(),
+                txtBrand.getText(),
+                comboSupID.getValue(),
+                txtBatchNo.getText(),
+                Integer.parseInt(txtQty.getText()),
+                cost,
+                unitPrice,
+                datePicker.getValue(),
+                txtCategory.getText()
+        );
+        service.updateMedicine(txtMedID.getText(),medicineDTO);
+
     }
 
     @FXML
