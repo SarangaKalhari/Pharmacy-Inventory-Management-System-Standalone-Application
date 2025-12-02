@@ -3,6 +3,7 @@ package edu.icet.model.DTO;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -19,7 +20,7 @@ public class MedicineDTO {
     private int quantity;
     private BigDecimal cost;
     private BigDecimal unitPrice;
-    private Date expiryDate;
+    private LocalDate expiryDate;
     private String category;
 
 }

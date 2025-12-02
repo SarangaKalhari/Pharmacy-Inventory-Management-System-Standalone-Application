@@ -4,6 +4,7 @@ package edu.icet.model.Entity;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -13,14 +14,14 @@ import java.util.Date;
 @ToString
 public class Medicine {
 
-    private String medicineID;
+    private String medicine_id;
     private String name;
     private String brand;
-    private String supplierID;
-    private String batchNo;
+    private String supplier_id;
+    private String batch_no;
     private int quantity;
     private BigDecimal cost;
-    private BigDecimal unitPrice;
-    private Date expiryDate;
+    private BigDecimal unit_price;
+    private LocalDate expiry_date;
     private String category;
 }
