@@ -104,4 +104,23 @@ public class MedicineManagementService {
 
         repository.update(medicine);
     }
+
+    public MedicineDTO viewMedicine(String text) {
+
+        Medicine medicine = repository.view(text);
+
+        MedicineDTO medicineDTO = new MedicineDTO(
+                medicine.getName(),
+                medicine.getBrand(),
+                medicine.getSupplier_id(),
+                medicine.getBatch_no(),
+                medicine.getQuantity(),
+                medicine.getCost(),
+                medicine.getUnit_price(),
+                medicine.getExpiry_date(),
+                medicine.getCategory()
+        );
+
+        return medicineDTO;
+    }
 }

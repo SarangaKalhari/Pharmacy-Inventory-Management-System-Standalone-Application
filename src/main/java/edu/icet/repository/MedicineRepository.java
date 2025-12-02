@@ -103,4 +103,37 @@ public class MedicineRepository {
             throw new RuntimeException(e);
         }
     }
+
+    public Medicine view(String text) {
+
+        Medicine medicine = null;
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM medicine WHERE medicine_id=?");
+
+            preparedStatement.setObject(1,text);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                medicine = new Medicine(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getString(4),
+                        resultSet.getString(5),
+                        resultSet.getInt(6),
+                        resultSet.getBigDecimal(7),
+                        resultSet.getBigDecimal(8),
+                        resultSet.getDate(9).toLocalDate(),
+                        resultSet.getString(10)
+                );
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return medicine;
+    }
 }

@@ -148,6 +148,20 @@ public class MedicineManagementForm implements Initializable {
     @FXML
     void viewOnAction(ActionEvent event) {
 
+        service.viewMedicine(txtMedID.getText());
+
+        MedicineDTO medicineDTO= service.viewMedicine(txtMedID.getText());
+
+        txtMedName.setText(medicineDTO.getName());
+        txtBrand.setText(medicineDTO.getBrand());
+        txtBatchNo.setText(medicineDTO.getBatchNo());
+        txtQty.setText(String.valueOf(medicineDTO.getQuantity()));
+        txtCost.setText(String.valueOf(medicineDTO.getCost()));
+        txtPrice.setText(String.valueOf(medicineDTO.getUnitPrice()));
+        txtCategory.setText(medicineDTO.getCategory());
+        datePicker.setValue(medicineDTO.getExpiryDate());
+        comboSupID.setValue(medicineDTO.getSupplierID());
+
     }
 
     @Override
