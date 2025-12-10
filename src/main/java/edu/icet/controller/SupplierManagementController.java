@@ -77,6 +77,9 @@ public class SupplierManagementController implements Initializable {
 
         service.addSupplier(supplierDTO);
 
+        loadSupplierTable();
+        clear();
+
     }
 
     @FXML

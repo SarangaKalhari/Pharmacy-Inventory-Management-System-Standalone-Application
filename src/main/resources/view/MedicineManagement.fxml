@@ -50,7 +50,7 @@
             <Font name="Segoe UI Bold" size="14.0" />
          </font>
       </Button>
-      <TableView fx:id="tblMedicine" layoutX="22.0" layoutY="307.0" prefHeight="292.0" prefWidth="907.0">
+      <TableView fx:id="tblMedicine" layoutX="22.0" layoutY="307.0" prefHeight="292.0" prefWidth="907.0" AnchorPane.bottomAnchor="56.80000000000001" AnchorPane.leftAnchor="22.399999999999977" AnchorPane.rightAnchor="14.799999999999955" AnchorPane.topAnchor="307.0">
         <columns>
           <TableColumn fx:id="colMedID" prefWidth="90.39999008178711" text="Medicine_ID" />
           <TableColumn fx:id="colName" prefWidth="111.99996948242188" text="Name" />

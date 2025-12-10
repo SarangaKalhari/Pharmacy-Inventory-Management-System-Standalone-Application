@@ -8,17 +8,44 @@ import edu.icet.repository.SupplierRepository;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 public class SupplierManagementService {
 
     SupplierRepository repository = new SupplierRepository();
 
     public void addSupplier(SupplierDTO supplierDTO) {
+        LocalDateTime now = LocalDateTime.now();
+        Timestamp timestamp = Timestamp.valueOf(now);
+        Supplier supplier = new Supplier(
+                getSupID(),
+                supplierDTO.getCompanyName(),
+                supplierDTO.getContactPerson(),
+                supplierDTO.getPhone(),
+                supplierDTO.getEmail(),
+                supplierDTO.getAddress(),
+                timestamp
+
+        );
+
+        repository.add(supplier);
+    }
+
+    private String getSupID() {
+        String lastID = repository.getID();
+        if (lastID != null) {
+            String numberPart = lastID.replaceAll("[^0-9]", "");
+            int numericID = Integer.parseInt(numberPart);
+            numericID++;
+            return "SUP" + numericID;
+        } else {
+            return "SUP1001";
+        }
     }
 
     public ObservableList<Supplier> loadSupplier(){
@@ -39,7 +66,6 @@ public class SupplierManagementService {
                         rs.getString("email"),
                         rs.getString("address"),
                          rs.getTimestamp("created_at")
-
                 ));
             }
 
