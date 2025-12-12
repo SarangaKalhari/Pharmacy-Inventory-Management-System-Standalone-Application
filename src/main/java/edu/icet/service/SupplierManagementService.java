@@ -2,7 +2,6 @@ package edu.icet.service;
 
 import edu.icet.DB.DBConnection;
 import edu.icet.model.DTO.SupplierDTO;
-import edu.icet.model.Entity.Medicine;
 import edu.icet.model.Entity.Supplier;
 import edu.icet.repository.SupplierRepository;
 import javafx.collections.FXCollections;
@@ -78,5 +77,38 @@ public class SupplierManagementService {
 
     public void deleteSupplier(String supplierID) {
         repository.delete(supplierID);
+    }
+
+    public void updateSupplier(String text, SupplierDTO supplierDTO) {
+
+        LocalDateTime now = LocalDateTime.now();
+        Timestamp timestamp = Timestamp.valueOf(now);
+
+        Supplier supplier = new Supplier(
+                text,
+                supplierDTO.getCompanyName(),
+                supplierDTO.getContactPerson(),
+                supplierDTO.getPhone(),
+                supplierDTO.getAddress(),
+                supplierDTO.getEmail(),
+                timestamp
+        );
+
+        repository.update(supplier);
+    }
+
+    public SupplierDTO viewSupplier(String supplierID) {
+
+        Supplier supplier = repository.view(supplierID);
+
+        SupplierDTO supplierDTO = new SupplierDTO(
+                supplier.getCompany_name(),
+                supplier.getContact_person(),
+                supplier.getPhone(),
+                supplier.getEmail(),
+                supplier.getAddress()
+        );
+
+        return supplierDTO;
     }
 }

@@ -1,6 +1,5 @@
 package edu.icet.controller;
 
-import edu.icet.model.DTO.MedicineDTO;
 import edu.icet.model.DTO.SupplierDTO;
 import edu.icet.model.Entity.Supplier;
 import edu.icet.service.SupplierManagementService;
@@ -94,15 +93,39 @@ public class SupplierManagementController implements Initializable {
     @FXML
     void reloadOnAction(ActionEvent event) {
 
+        clear();
+        loadSupplierTable();
     }
 
     @FXML
     void updateOnAction(ActionEvent event) {
 
+        SupplierDTO supplierDTO = new SupplierDTO(
+                txtCompanyName.getText(),
+                txtContact.getText(),
+                Long.parseLong(txtPhone.getText()),
+                txtAddress.getText(),
+                txtEmail.getText()
+        );
+
+        service.updateSupplier(txtSupID.getText(),supplierDTO);
+
+        loadSupplierTable();
+        clear();
     }
 
     @FXML
     void viewOnAction(ActionEvent event) {
+
+        service.viewSupplier(txtSupID.getText());
+
+        SupplierDTO supplierDTO= service.viewSupplier(txtSupID.getText());
+
+        txtCompanyName.setText(supplierDTO.getCompanyName());
+        txtContact.setText(supplierDTO.getContactPerson());
+        txtPhone.setText(String.valueOf(supplierDTO.getPhone()));
+        txtEmail.setText(supplierDTO.getEmail());
+        txtAddress.setText(supplierDTO.getAddress());
 
     }
 

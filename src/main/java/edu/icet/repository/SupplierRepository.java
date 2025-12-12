@@ -54,4 +54,55 @@ public class SupplierRepository {
             throw new RuntimeException(e);
         }
     }
+
+    public void update(Supplier supplier) {
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("UPDATE supplier SET company_name=?, contact_person=?, phone=?, email=?, address=?, created_at=? WHERE supplier_id=?");
+
+            preparedStatement.setObject(1,supplier.getCompany_name());
+            preparedStatement.setObject(2,supplier.getContact_person());
+            preparedStatement.setObject(3,supplier.getPhone());
+            preparedStatement.setObject(4,supplier.getEmail());
+            preparedStatement.setObject(5,supplier.getAddress());
+            preparedStatement.setObject(6,supplier.getCreated_at());
+            preparedStatement.setObject(7,supplier.getSupplier_id());
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Supplier view(String supplierID) {
+
+        Supplier supplier = null;
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM supplier WHERE supplier_id=?");
+
+            preparedStatement.setObject(1,supplierID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                supplier = new Supplier(
+                        resultSet.getString(1),
+                        resultSet.getString(2),
+                        resultSet.getString(3),
+                        resultSet.getLong(4),
+                        resultSet.getString(5),
+                        resultSet.getString(6),
+                        resultSet.getTimestamp(7)
+                );
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return supplier;
+    }
 }

@@ -119,6 +119,8 @@ public class MedicineManagementForm implements Initializable {
     @FXML
     void reloadOnAction(ActionEvent event) {
 
+        clear();
+        loadMedicineTable();
     }
 
     @FXML
