@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="578.0" prefWidth="910.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.SalesController">
+   <children>
+      <AnchorPane layoutX="2.0" layoutY="1.0" prefHeight="656.0" prefWidth="944.0" style="-fx-background-color: white;">
+         <children>
+            <AnchorPane prefHeight="90.0" prefWidth="944.0" style="-fx-background-color: #a7f29c;">
+               <children>
+                  <Label layoutX="403.0" layoutY="18.0" prefHeight="54.0" prefWidth="138.0" text="Sales Item">
+                     <font>
+                        <Font name="Segoe UI Bold Italic" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <TextField fx:id="txtEmail" layoutX="312.0" layoutY="194.0" prefHeight="27.0" prefWidth="198.0" promptText="Item Total" style="-fx-border-color: black; -fx-border-radius: 10px;" />
+            <TextField fx:id="txtQty" layoutX="312.0" layoutY="129.0" prefHeight="27.0" prefWidth="198.0" promptText="Unit Price" style="-fx-border-color: black; -fx-border-radius: 10px;" />
+            <TextField fx:id="txtQty" layoutX="85.0" layoutY="194.0" prefHeight="27.0" prefWidth="166.0" promptText="Quantity" style="-fx-border-color: black; -fx-border-radius: 10px;" />
+            <Button layoutX="601.0" layoutY="129.0" mnemonicParsing="false" onAction="#addItemOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #f28135;" text="Add Item" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="725.0" layoutY="129.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #f28135;" text="Update" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button layoutX="725.0" layoutY="174.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #f28135;" text="Delete" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="14.0" />
+               </font>
+            </Button>
+            <TableView fx:id="tblSale" layoutX="86.0" layoutY="256.0" prefHeight="329.0" prefWidth="738.0" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="86.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="256.0">
+               <columns>
+                  <TableColumn fx:id="colSupID" prefWidth="106.40001904964447" text="ID" />
+                  <TableColumn fx:id="colName" prefWidth="155.20003509521484" text="medicine ID" />
+                  <TableColumn fx:id="colContactPerson" prefWidth="111.99993896484375" text="Qty" />
+                  <TableColumn fx:id="colPhone" prefWidth="158.39993286132812" text="Unit Price" />
+                  <TableColumn fx:id="colEmail" prefWidth="177.60003662109375" text="Total" />
+               </columns>
+            </TableView>
+            <Button layoutX="734.0" layoutY="601.0" mnemonicParsing="false" onAction="#billFinishOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #f28135;" text="Finish" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="14.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="comboMedID" layoutX="86.0" layoutY="130.0" prefHeight="26.0" prefWidth="165.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
