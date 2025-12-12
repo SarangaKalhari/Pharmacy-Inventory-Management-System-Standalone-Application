@@ -56,22 +56,38 @@ public class SalesController implements Initializable {
     @FXML
     void addItemOnAction(ActionEvent event) {
 
+        String medID = String.valueOf(comboMedID.getValue());
+        int qty = Integer.parseInt(txtQty.getText());
+        BigDecimal unitPrice = new BigDecimal(txtUnitPrice.getText());
+        BigDecimal total = new BigDecimal(txtTotal.getText());
+
+        SaleDTO saleDTO = new SaleDTO(
+                medID,
+                qty,
+                unitPrice,
+                total
+        );
+
+        service.addSaleItem(saleDTO);
+
+        list.add(saleDTO);
+
     }
 
     @FXML
     void billFinishOnAction(ActionEvent event) {
+
 
     }
 
     @FXML
     void deleteOnAction(ActionEvent event) {
 
-    }
-
-    @FXML
-    void updateOnAction(ActionEvent event) {
+        SaleDTO selected = tblSale.getSelectionModel().getSelectedItem();
+        list.remove(selected);
 
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -94,6 +110,15 @@ public class SalesController implements Initializable {
 
         txtQty.textProperty().addListener(observable -> {
             updateTotal();
+        });
+
+        tblSale.getSelectionModel().selectedItemProperty().addListener((observableValue, saleDTO, t1) -> {
+            if (t1 != null){
+                comboMedID.setValue(t1.getItemID());
+                txtUnitPrice.setText(String.valueOf(t1.getUnitPrice()));
+                txtQty.setText(String.valueOf(t1.getQty()));
+                txtTotal.setText(String.valueOf(t1.getTotal()));
+            }
         });
 
     }

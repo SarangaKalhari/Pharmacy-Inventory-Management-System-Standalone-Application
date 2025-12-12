@@ -1,6 +1,7 @@
 package edu.icet.service;
 
 import edu.icet.model.DTO.SaleDTO;
+import edu.icet.model.Entity.Sale;
 import edu.icet.repository.SaleManagementRepository;
 import javafx.collections.ObservableList;
 
@@ -19,6 +20,7 @@ public class SaleManagementService {
     }
 
     public void addSaleItem(SaleDTO saleDTO) {
+
 
     }
 }
