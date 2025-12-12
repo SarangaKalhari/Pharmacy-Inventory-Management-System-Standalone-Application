@@ -85,6 +85,10 @@ public class SupplierManagementController implements Initializable {
     @FXML
     void deleteOnAction(ActionEvent event) {
 
+        service.deleteSupplier(txtSupID.getText());
+
+        loadSupplierTable();
+        clear();
     }
 
     @FXML

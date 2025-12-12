@@ -41,4 +41,17 @@ public class SupplierRepository {
         }
         return lastID;
     }
+
+    public void delete(String supplierID) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement statement = connection.prepareStatement("DELETE FROM supplier WHERE supplier_id=?");
+
+            statement.setString(1,supplierID);
+            statement.execute();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

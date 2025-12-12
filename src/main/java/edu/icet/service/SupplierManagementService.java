@@ -75,4 +75,8 @@ public class SupplierManagementService {
 
         return supplierObservableList;
     }
+
+    public void deleteSupplier(String supplierID) {
+        repository.delete(supplierID);
+    }
 }
