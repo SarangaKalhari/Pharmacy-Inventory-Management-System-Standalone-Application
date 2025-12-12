@@ -63,6 +63,12 @@ public class AdminDashboardForm {
     @FXML
     void salesOnAction(ActionEvent event) {
 
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Sales.fxml"))));
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML

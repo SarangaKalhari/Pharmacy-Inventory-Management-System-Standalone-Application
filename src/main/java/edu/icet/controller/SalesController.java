@@ -1,40 +1,57 @@
 package edu.icet.controller;
 
+import edu.icet.model.DTO.SaleDTO;
+import edu.icet.service.SaleManagementService;
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 
-public class SalesController {
+import java.math.BigDecimal;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    @FXML
-    private TableColumn<?, ?> colContactPerson;
+public class SalesController implements Initializable {
 
-    @FXML
-    private TableColumn<?, ?> colEmail;
-
-    @FXML
-    private TableColumn<?, ?> colName;
-
-    @FXML
-    private TableColumn<?, ?> colPhone;
+    SaleManagementService service = new SaleManagementService();
+    ObservableList<SaleDTO> list = FXCollections.observableArrayList();
 
     @FXML
-    private TableColumn<?, ?> colSupID;
+    private TableColumn<?, Integer> colListID;
 
     @FXML
-    private ComboBox<?> comboMedID;
+    private TableColumn<?, ?> colMedID;
 
     @FXML
-    private TableView<?> tblSale;
+    private TableColumn<?, ?> colQty;
 
     @FXML
-    private TextField txtEmail;
+    private TableColumn<?, ?> colTotal;
+
+    @FXML
+    private TableColumn<?, ?> colUnitPrice;
+
+    @FXML
+    private ComboBox<String> comboMedID;
+
+    @FXML
+    private TableView<SaleDTO> tblSale;
 
     @FXML
     private TextField txtQty;
+
+    @FXML
+    private TextField txtTotal;
+
+    @FXML
+    private TextField txtUnitPrice;
 
     @FXML
     void addItemOnAction(ActionEvent event) {
@@ -55,5 +72,47 @@ public class SalesController {
     void updateOnAction(ActionEvent event) {
 
     }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        colListID.setCellValueFactory(col ->
+                new ReadOnlyObjectWrapper<>(tblSale.getItems().indexOf(col.getValue()) + 1)
+        );
+        colMedID.setCellValueFactory(new PropertyValueFactory<>("itemID"));
+        colQty.setCellValueFactory(new PropertyValueFactory<>("qty"));
+        colUnitPrice.setCellValueFactory(new PropertyValueFactory<>("unitPrice"));
+        colTotal.setCellValueFactory(new PropertyValueFactory<>("total"));
+
+        tblSale.setItems(list);
+
+        comboMedID.setItems(service.getMedicineID());
+
+        comboMedID.getSelectionModel().selectedItemProperty().addListener(observable -> {
+            txtUnitPrice.setText(String.valueOf(service.getUnitPrice(comboMedID.getValue())));
+        });
+
+        txtQty.textProperty().addListener(observable -> {
+            updateTotal();
+        });
+
+    }
+
+    private void updateTotal() {
+        try {
+            if (!txtQty.getText().isEmpty() && !txtUnitPrice.getText().isEmpty()) {
+
+                int qty = Integer.parseInt(txtQty.getText());
+                BigDecimal price = new BigDecimal(txtUnitPrice.getText());
+
+                BigDecimal total = price.multiply(BigDecimal.valueOf(qty));
+
+                txtTotal.setText(total.toString());
+            }
+        } catch (NumberFormatException e) {
+            txtTotal.setText("");
+        }
+    }
+
 
 }

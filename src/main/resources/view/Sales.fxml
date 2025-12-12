@@ -22,8 +22,8 @@
                   </Label>
                </children>
             </AnchorPane>
-            <TextField fx:id="txtEmail" layoutX="312.0" layoutY="194.0" prefHeight="27.0" prefWidth="198.0" promptText="Item Total" style="-fx-border-color: black; -fx-border-radius: 10px;" />
-            <TextField fx:id="txtQty" layoutX="312.0" layoutY="129.0" prefHeight="27.0" prefWidth="198.0" promptText="Unit Price" style="-fx-border-color: black; -fx-border-radius: 10px;" />
+            <TextField fx:id="txtTotal" layoutX="312.0" layoutY="194.0" prefHeight="27.0" prefWidth="198.0" promptText="Item Total" style="-fx-border-color: black; -fx-border-radius: 10px;" />
+            <TextField fx:id="txtUnitPrice" layoutX="312.0" layoutY="129.0" prefHeight="27.0" prefWidth="198.0" promptText="Unit Price" style="-fx-border-color: black; -fx-border-radius: 10px;" />
             <TextField fx:id="txtQty" layoutX="85.0" layoutY="194.0" prefHeight="27.0" prefWidth="166.0" promptText="Quantity" style="-fx-border-color: black; -fx-border-radius: 10px;" />
             <Button layoutX="601.0" layoutY="129.0" mnemonicParsing="false" onAction="#addItemOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #f28135;" text="Add Item" textFill="WHITE">
                <font>
@@ -42,11 +42,11 @@
             </Button>
             <TableView fx:id="tblSale" layoutX="86.0" layoutY="256.0" prefHeight="329.0" prefWidth="738.0" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="86.0" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="256.0">
                <columns>
-                  <TableColumn fx:id="colSupID" prefWidth="106.40001904964447" text="ID" />
-                  <TableColumn fx:id="colName" prefWidth="155.20003509521484" text="medicine ID" />
-                  <TableColumn fx:id="colContactPerson" prefWidth="111.99993896484375" text="Qty" />
-                  <TableColumn fx:id="colPhone" prefWidth="158.39993286132812" text="Unit Price" />
-                  <TableColumn fx:id="colEmail" prefWidth="177.60003662109375" text="Total" />
+                  <TableColumn fx:id="colListID" prefWidth="106.40001904964447" text="ID" />
+                  <TableColumn fx:id="colMedID" prefWidth="155.20003509521484" text="medicine ID" />
+                  <TableColumn fx:id="colQty" prefWidth="111.99993896484375" text="Qty" />
+                  <TableColumn fx:id="colUnitPrice" prefWidth="158.39993286132812" text="Unit Price" />
+                  <TableColumn fx:id="colTotal" prefWidth="177.60003662109375" text="Total" />
                </columns>
             </TableView>
             <Button layoutX="734.0" layoutY="601.0" mnemonicParsing="false" onAction="#billFinishOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #f28135;" text="Finish" textFill="WHITE">
@@ -54,7 +54,7 @@
                   <Font name="Segoe UI Bold" size="14.0" />
                </font>
             </Button>
-            <ComboBox fx:id="comboMedID" layoutX="86.0" layoutY="130.0" prefHeight="26.0" prefWidth="165.0" />
+            <ComboBox fx:id="comboMedID" layoutX="86.0" layoutY="130.0" prefHeight="26.0" prefWidth="165.0" promptText="Medicine ID" />
          </children>
       </AnchorPane>
    </children>
