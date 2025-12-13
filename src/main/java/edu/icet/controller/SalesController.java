@@ -68,15 +68,16 @@ public class SalesController implements Initializable {
                 total
         );
 
-        service.addSaleItem(saleDTO);
-
         list.add(saleDTO);
+        clear();
 
     }
 
     @FXML
     void billFinishOnAction(ActionEvent event) {
 
+        service.addSaleItem(list);
+        clear();
 
     }
 
@@ -85,7 +86,7 @@ public class SalesController implements Initializable {
 
         SaleDTO selected = tblSale.getSelectionModel().getSelectedItem();
         list.remove(selected);
-
+        clear();
     }
 
 
@@ -139,5 +140,11 @@ public class SalesController implements Initializable {
         }
     }
 
+    void clear(){
+        comboMedID.setValue(null);
+        txtUnitPrice.clear();
+        txtQty.clear();
+        txtTotal.clear();
+    }
 
 }

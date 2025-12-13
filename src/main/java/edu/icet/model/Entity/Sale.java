@@ -1,7 +1,14 @@
 package edu.icet.model.Entity;
 
+import lombok.*;
+
 import java.math.BigDecimal;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Sale {
 
     private int id;

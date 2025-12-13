@@ -1,15 +1,13 @@
 package edu.icet.repository;
 
 import edu.icet.DB.DBConnection;
-import edu.icet.model.DTO.SaleDTO;
+import edu.icet.model.Entity.Sale;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDateTime;
 
 public class SaleManagementRepository {
     public ObservableList<String> getMedicineID() {
@@ -47,4 +45,101 @@ public class SaleManagementRepository {
         }
         return price;
     }
+
+    public String getInvoice() {
+        String lastID = null;
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT invoice_id FROM sales_invoice ORDER BY CAST(SUBSTRING(invoice_id, 4) AS UNSIGNED) DESC LIMIT 1");
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()){
+                lastID = rs.getString("invoice_id");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return lastID;
+    }
+
+    public int getID(){
+        int lastID = 0;
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT id FROM sales_items ORDER BY id DESC LIMIT 1");
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()){
+                 lastID = rs.getInt("id");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return lastID;
+    }
+
+    public void addSaleItems(ObservableList<Sale> sales, String invoice, BigDecimal total, BigDecimal discount, BigDecimal netAmount) {
+        LocalDateTime now = LocalDateTime.now();
+        Timestamp timestamp = Timestamp.valueOf(now);
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO sales_invoice (invoice_id, date, total_amount, discount, net_amount) VALUES (?,?,?,?,?)");
+
+            preparedStatement.setObject(1, invoice);
+            preparedStatement.setObject(2, timestamp);
+            preparedStatement.setObject(3, total);
+            preparedStatement.setObject(4, discount);
+            preparedStatement.setObject(5, netAmount);
+
+            preparedStatement.execute();
+//            preparedStatement.setObject(4,);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        try {
+            Connection connection =  DBConnection.getInstance().getConnection();
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO sales_items (id, invoice_id, medicine_id, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?)");
+
+            int newID = getID() + 1;
+            for (Sale item : sales){
+                statement.setObject(1,newID);
+                statement.setObject(2,item.getInvoice_id());
+                statement.setObject(3,item.getMedicine_id());
+                statement.setObject(4,item.getQuantity());
+                statement.setObject(5,item.getPrice());
+                statement.setObject(6,item.getTotal());
+
+                statement.addBatch();
+                newID++;
+            }
+
+            statement.executeBatch();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+//    public void addItem(Sale sale) {
+//        try {
+//            Connection connection =  DBConnection.getInstance().getConnection();
+//            PreparedStatement statement = connection.prepareStatement("INSERT INTO sales_items (id, invoice_id, medicine_id, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?)");
+//
+//                statement.setObject(1,sale.getId());
+//                statement.setObject(2,sale.getInvoice_id());
+//                statement.setObject(3,sale.getMedicine_id());
+//                statement.setObject(4,sale.getQuantity());
+//                statement.setObject(5,sale.getPrice());
+//                statement.setObject(6,sale.getTotal());
+//
+//
+//            statement.execute();
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 }
