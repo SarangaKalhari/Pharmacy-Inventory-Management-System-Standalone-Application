@@ -1,5 +1,6 @@
 package edu.icet.service;
 
+import edu.icet.controller.BillPrintController;
 import edu.icet.model.DTO.SaleDTO;
 import edu.icet.model.Entity.Sale;
 import edu.icet.repository.SaleManagementRepository;
@@ -21,7 +22,7 @@ public class SaleManagementService {
         return repository.getPrice(value);
     }
 
-    private String calInvoiceId() {
+    public String calInvoiceId() {
         String lastID = repository.getInvoice();
         if (lastID != null) {
             String numberPart = lastID.replaceAll("[^0-9]", "");
@@ -75,18 +76,11 @@ public class SaleManagementService {
 
     }
 
-    public void addItem(SaleDTO saleDTO) {
-//        String invoiceID = calInvoiceId();
-//
-//        Sale sale = new Sale(
-//                generateID(),
-//                invoiceID,
-//                saleDTO.getItemID(),
-//                saleDTO.getQty(),
-//                saleDTO.getUnitPrice(),
-//                saleDTO.getTotal()
-//        );
-//
-//        repository.addItem(sale);
+    public ObservableList<Integer> getQTYs() {
+        return repository.getQty();
+    }
+
+    public Integer setQTY(String value) {
+        return repository.setQTY(value);
     }
 }

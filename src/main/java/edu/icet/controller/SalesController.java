@@ -7,21 +7,25 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SalesController implements Initializable {
 
+    Stage stage = new Stage();
     SaleManagementService service = new SaleManagementService();
     ObservableList<SaleDTO> list = FXCollections.observableArrayList();
+    BillPrintController printController = new BillPrintController();
 
     @FXML
     private TableColumn<?, Integer> colListID;
@@ -45,7 +49,7 @@ public class SalesController implements Initializable {
     private TableView<SaleDTO> tblSale;
 
     @FXML
-    private TextField txtQty;
+    private ComboBox<Integer> comboQTY;
 
     @FXML
     private TextField txtTotal;
@@ -54,10 +58,13 @@ public class SalesController implements Initializable {
     private TextField txtUnitPrice;
 
     @FXML
+    private TextField txtQty;
+
+    @FXML
     void addItemOnAction(ActionEvent event) {
 
         String medID = String.valueOf(comboMedID.getValue());
-        int qty = Integer.parseInt(txtQty.getText());
+        int qty = Integer.parseInt(String.valueOf(comboQTY.getValue()));
         BigDecimal unitPrice = new BigDecimal(txtUnitPrice.getText());
         BigDecimal total = new BigDecimal(txtTotal.getText());
 
@@ -69,15 +76,27 @@ public class SalesController implements Initializable {
         );
 
         list.add(saleDTO);
-        clear();
-
     }
 
     @FXML
-    void billFinishOnAction(ActionEvent event) {
+    void billFinishOnAction(ActionEvent event) throws IOException {
 
         service.addSaleItem(list);
-        clear();
+
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/view/BillPrint.fxml")
+            );
+
+            Parent root = loader.load();
+
+        BillPrintController controller = loader.getController();
+        controller.passData(list, service.calInvoiceId());
+
+            Stage stage = new Stage();
+            stage.setTitle("Bill Preview");
+            stage.setScene(new Scene(root));
+            stage.show();
+
 
     }
 
@@ -86,7 +105,6 @@ public class SalesController implements Initializable {
 
         SaleDTO selected = tblSale.getSelectionModel().getSelectedItem();
         list.remove(selected);
-        clear();
     }
 
 
@@ -105,12 +123,24 @@ public class SalesController implements Initializable {
 
         comboMedID.setItems(service.getMedicineID());
 
+        comboQTY.setItems(service.getQTYs());
+
         comboMedID.getSelectionModel().selectedItemProperty().addListener(observable -> {
             txtUnitPrice.setText(String.valueOf(service.getUnitPrice(comboMedID.getValue())));
+            comboQTY.setValue(service.setQTY(comboMedID.getValue()));
         });
 
-        txtQty.textProperty().addListener(observable -> {
-            updateTotal();
+        txtQty.textProperty().addListener((obs, oldVal, newVal) -> {
+            if(comboQTY.getValue()>=Integer.parseInt(txtQty.getText()) && (txtQty.getText()!=null)) {
+                updateTotal();
+            }else{
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Invalid Quantity");
+                alert.setHeaderText(null);
+                alert.setContentText("Quantity cannot be higher than available stock!");
+                alert.showAndWait();
+
+            }
         });
 
         tblSale.getSelectionModel().selectedItemProperty().addListener((observableValue, saleDTO, t1) -> {
@@ -139,12 +169,4 @@ public class SalesController implements Initializable {
             txtTotal.setText("");
         }
     }
-
-    void clear(){
-        comboMedID.setValue(null);
-        txtUnitPrice.clear();
-        txtQty.clear();
-        txtTotal.clear();
-    }
-
 }

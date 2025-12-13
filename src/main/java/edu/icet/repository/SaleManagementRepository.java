@@ -124,22 +124,40 @@ public class SaleManagementRepository {
         }
     }
 
-//    public void addItem(Sale sale) {
-//        try {
-//            Connection connection =  DBConnection.getInstance().getConnection();
-//            PreparedStatement statement = connection.prepareStatement("INSERT INTO sales_items (id, invoice_id, medicine_id, quantity, price, total) VALUES (?, ?, ?, ?, ?, ?)");
-//
-//                statement.setObject(1,sale.getId());
-//                statement.setObject(2,sale.getInvoice_id());
-//                statement.setObject(3,sale.getMedicine_id());
-//                statement.setObject(4,sale.getQuantity());
-//                statement.setObject(5,sale.getPrice());
-//                statement.setObject(6,sale.getTotal());
-//
-//
-//            statement.execute();
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+    public ObservableList<Integer> getQty() {
+        ObservableList<Integer> list = FXCollections.observableArrayList();
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT DISTINCT quantity FROM medicine");
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()) {
+                list.add(rs.getInt("quantity"));
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+    public Integer setQTY(String value) {
+
+        int qty = 0;
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement ps = connection.prepareStatement("SELECT quantity FROM medicine WHERE medicine_id=?");
+
+            ps.setObject(1,value);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                qty = rs.getInt("quantity");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return qty;
+    }
 }

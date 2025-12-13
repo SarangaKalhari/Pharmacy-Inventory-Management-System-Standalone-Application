@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="578.0" prefWidth="910.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.SalesController">
    <children>
-      <AnchorPane layoutX="2.0" layoutY="1.0" prefHeight="656.0" prefWidth="944.0" style="-fx-background-color: white;">
+      <AnchorPane layoutX="1.0" layoutY="1.0" prefHeight="656.0" prefWidth="944.0" style="-fx-background-color: white;">
          <children>
             <AnchorPane prefHeight="90.0" prefWidth="944.0" style="-fx-background-color: #a7f29c;">
                <children>
@@ -22,9 +22,8 @@
                   </Label>
                </children>
             </AnchorPane>
-            <TextField fx:id="txtTotal" layoutX="372.0" layoutY="174.0" prefHeight="27.0" prefWidth="243.0" promptText="Item Total" style="-fx-border-color: black; -fx-border-radius: 10px;" />
-            <TextField fx:id="txtUnitPrice" layoutX="372.0" layoutY="129.0" prefHeight="27.0" prefWidth="243.0" promptText="Unit Price" style="-fx-border-color: black; -fx-border-radius: 10px;" />
-            <TextField fx:id="txtQty" layoutX="85.0" layoutY="174.0" prefHeight="27.0" prefWidth="198.0" promptText="Quantity" style="-fx-border-color: black; -fx-border-radius: 10px;" />
+            <TextField fx:id="txtTotal" layoutX="401.0" layoutY="174.0" prefHeight="27.0" prefWidth="243.0" promptText="Item Total" style="-fx-border-color: black; -fx-border-radius: 10px;" />
+            <TextField fx:id="txtUnitPrice" layoutX="401.0" layoutY="129.0" prefHeight="27.0" prefWidth="243.0" promptText="Unit Price" style="-fx-border-color: black; -fx-border-radius: 10px;" />
             <Button layoutX="703.0" layoutY="129.0" mnemonicParsing="false" onAction="#addItemOnAction" prefHeight="28.0" prefWidth="112.0" style="-fx-background-color: #f28135;" text="Add Item" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="14.0" />
@@ -50,6 +49,8 @@
                </font>
             </Button>
             <ComboBox fx:id="comboMedID" layoutX="86.0" layoutY="130.0" prefHeight="26.0" prefWidth="198.0" promptText="Medicine ID" />
+            <ComboBox fx:id="comboQTY" layoutX="86.0" layoutY="175.0" prefHeight="26.0" prefWidth="118.0" promptText="Qty" />
+            <TextField fx:id="txtQty" layoutX="242.0" layoutY="174.0" prefHeight="27.0" prefWidth="127.0" promptText="QTY" style="-fx-border-color: black; -fx-border-radius: 10px;" />
          </children>
       </AnchorPane>
    </children>
