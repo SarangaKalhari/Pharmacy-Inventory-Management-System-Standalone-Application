@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.Button?>
+<AnchorPane prefHeight="600.0" prefWidth="435.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.BillPrintController">
+
+    <!-- Header -->
+    <AnchorPane prefHeight="100.0" prefWidth="435.0" style="-fx-background-color: #5b687e;">
+        <children>
+            <Label layoutX="89.0" layoutY="29.0" prefHeight="43.0" prefWidth="257.0" text="Medora Pharmacy" textFill="#fcf9f9">
+                <font>
+                    <Font name="Calibri Bold" size="32.0" />
+                </font>
+            </Label>
+        </children>
+    </AnchorPane>
+
+    <!-- Invoice Info -->
+    <Label fx:id="lblInvoice" layoutX="20.0" layoutY="115.0" prefHeight="26.0" prefWidth="150.0" text="Invoice ID" />
+    <Label fx:id="lblDateTime" layoutX="260.0" layoutY="115.0" prefHeight="26.0" prefWidth="160.0" text="Date/Time" />
+
+    <Label layoutY="145.0" prefHeight="18.0" prefWidth="435.0" text="------------------------------------------------------------------------------------------" />
+
+    <!-- Scrollable items -->
+    <ScrollPane fitToWidth="true" layoutY="160.0" prefHeight="350.0" prefWidth="435.0">
+        <content>
+            <VBox fx:id="vboxItems" spacing="5.0">
+                <padding>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                </padding>
+            </VBox>
+        </content>
+    </ScrollPane>
+
+    <!-- Totals -->
+    <Label layoutX="20.0" layoutY="520.0" text="Total Amount:" />
+    <Label fx:id="lblTotalAmount" layoutX="120.0" layoutY="520.0" text="0.00" />
+
+    <Label layoutX="20.0" layoutY="545.0" text="Discount:" />
+    <Label fx:id="lblDiscount" layoutX="120.0" layoutY="545.0" text="0.00" />
+
+    <Label layoutX="20.0" layoutY="570.0" text="Net Amount:" />
+    <Label fx:id="lblNetAmount" layoutX="120.0" layoutY="570.0" text="0.00" />
+
+    <Button text="Print"
+            layoutX="320"
+            layoutY="570"
+            onAction="#handlePrint"/>
+
+
+</AnchorPane>
