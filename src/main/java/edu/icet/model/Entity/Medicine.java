@@ -24,4 +24,6 @@ public class Medicine {
     private BigDecimal unit_price;
     private LocalDate expiry_date;
     private String category;
+
+    private String status;
 }

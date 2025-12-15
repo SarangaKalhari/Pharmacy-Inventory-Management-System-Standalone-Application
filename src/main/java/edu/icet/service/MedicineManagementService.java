@@ -36,7 +36,8 @@ public class MedicineManagementService {
                         rs.getBigDecimal("unit_price"),
                         rs.getDate("expiry_date").toLocalDate(),
 //                        expiry,
-                        rs.getString("category")
+                        rs.getString("category"),
+                        ""
                 ));
             }
 
@@ -76,7 +77,8 @@ public class MedicineManagementService {
                 medicineDTO.getCost(),
                 medicineDTO.getUnitPrice(),
                 medicineDTO.getExpiryDate(),
-                medicineDTO.getCategory()
+                medicineDTO.getCategory(),
+                ""
         );
 
         repository.add(medicine);
@@ -99,7 +101,8 @@ public class MedicineManagementService {
                 medicineDTO.getCost(),
                 medicineDTO.getUnitPrice(),
                 medicineDTO.getExpiryDate(),
-                medicineDTO.getCategory()
+                medicineDTO.getCategory(),
+                ""
         );
 
         repository.update(medicine);

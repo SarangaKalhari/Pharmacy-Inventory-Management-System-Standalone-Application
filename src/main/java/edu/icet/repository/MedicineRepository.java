@@ -127,7 +127,8 @@ public class MedicineRepository {
                         resultSet.getBigDecimal(7),
                         resultSet.getBigDecimal(8),
                         resultSet.getDate(9).toLocalDate(),
-                        resultSet.getString(10)
+                        resultSet.getString(10),
+                        ""
                 );
             }
 
