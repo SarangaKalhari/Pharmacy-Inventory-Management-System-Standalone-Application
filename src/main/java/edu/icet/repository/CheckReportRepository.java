@@ -18,7 +18,7 @@ public class CheckReportRepository {
     public ObservableList<Medicine> loadLowStack(String lowStock) {
         try {
             Connection connection = DBConnection.getInstance().getConnection();
-            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * "+"FROM medicine WHERE quantity < 10");
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * "+"FROM medicine WHERE quantity < 50");
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {

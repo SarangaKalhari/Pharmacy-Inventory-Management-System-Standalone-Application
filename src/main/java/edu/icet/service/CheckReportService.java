@@ -10,7 +10,12 @@ public class CheckReportService {
 
 
 
-    public void loadExpired(String expired) {
-        repository.expired(expired);
+    public ObservableList<Medicine> loadExpired(String expired) {
+        return repository.expired(expired);
     }
+
+    public ObservableList<Medicine> loadLowStock(String lowStock) {
+        return repository.loadLowStack(lowStock);
+    }
+
 }

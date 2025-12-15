@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -35,6 +36,15 @@ public class CheckReportController implements Initializable {
     @FXML
     private TableColumn<?, String> colStatus;
 
+    @FXML
+    private Button btnExpireSoon;
+
+    @FXML
+    private Button btnExpired;
+
+    @FXML
+    private Button btnLowStock;
+
     private ObservableList<Medicine> list = FXCollections.observableArrayList();
     CheckReportService service = new CheckReportService();
 
@@ -52,18 +62,20 @@ public class CheckReportController implements Initializable {
 
     @FXML
     void loadLowStock() {
+        list.clear();
 
+        tblReport.setItems(service.loadLowStock("LOW STOCK"));
+
+        btnLowStock.setDisable(true);
 
     }
 
 
     @FXML
     void loadExpired() {
+        tblReport.setItems(null);
         list.clear();
-
-        service.loadExpired("EXPIRED");
-
-
+        tblReport.setItems(service.loadExpired("EXPIRED"));
     }
 
     // 🟠 Expiring soon
