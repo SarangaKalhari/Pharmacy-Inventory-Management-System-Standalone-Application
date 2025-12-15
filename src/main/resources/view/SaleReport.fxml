@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="edu.icet.controller.CheckReportController">
+
+    <children>
+
+        <Label layoutX="20" layoutY="15"
+               text="Daily Stock &amp; Expiry Check"
+               style="-fx-font-size: 22px; -fx-font-weight: bold;" />
+
+        <!-- Buttons -->
+        <HBox layoutX="20" layoutY="60" spacing="15">
+            <Button text="Low Stock Report"
+                    onAction="#loadLowStock" />
+            <Button text="Expired Medicines"
+                    onAction="#loadExpired" />
+            <Button text="Expiring Soon (7 Days)"
+                    onAction="#loadExpiringSoon" />
+        </HBox>
+
+        <!-- Table -->
+        <TableView fx:id="tblReport"
+                   layoutX="20"
+                   layoutY="110"
+                   prefHeight="450"
+                   prefWidth="860">
+
+            <columns>
+                <TableColumn fx:id="colMedId" text="Medicine ID" prefWidth="120"/>
+                <TableColumn fx:id="colName" text="Medicine Name" prefWidth="200"/>
+                <TableColumn fx:id="colQty" text="Stock Qty" prefWidth="100"/>
+                <TableColumn fx:id="colExpire" text="Expire Date" prefWidth="150"/>
+                <TableColumn fx:id="colStatus" text="Status" prefWidth="150"/>
+            </columns>
+
+        </TableView>
+
+    </children>
+</AnchorPane>
