@@ -49,7 +49,7 @@ public class SalesController implements Initializable {
     private TableView<SaleDTO> tblSale;
 
     @FXML
-    private ComboBox<Integer> comboQTY;
+    private TextField txtAll;
 
     @FXML
     private TextField txtTotal;
@@ -64,7 +64,7 @@ public class SalesController implements Initializable {
     void addItemOnAction(ActionEvent event) {
 
         String medID = String.valueOf(comboMedID.getValue());
-        int qty = Integer.parseInt(String.valueOf(comboQTY.getValue()));
+        int qty = Integer.parseInt(String.valueOf(txtQty.getText()));
         BigDecimal unitPrice = new BigDecimal(txtUnitPrice.getText());
         BigDecimal total = new BigDecimal(txtTotal.getText());
 
@@ -123,15 +123,15 @@ public class SalesController implements Initializable {
 
         comboMedID.setItems(service.getMedicineID());
 
-        comboQTY.setItems(service.getQTYs());
+        txtAll.setText(String.valueOf(service.getQTYs()));
 
         comboMedID.getSelectionModel().selectedItemProperty().addListener(observable -> {
             txtUnitPrice.setText(String.valueOf(service.getUnitPrice(comboMedID.getValue())));
-            comboQTY.setValue(service.setQTY(comboMedID.getValue()));
+            txtAll.setText(String.valueOf(service.setQTY(comboMedID.getValue())));
         });
 
         txtQty.textProperty().addListener((obs, oldVal, newVal) -> {
-            if(comboQTY.getValue()>=Integer.parseInt(txtQty.getText()) && (txtQty.getText()!=null)) {
+            if(Integer.parseInt(txtAll.getText())>=Integer.parseInt(txtQty.getText()) && (txtQty.getText()!=null)) {
                 updateTotal();
             }else{
                 Alert alert = new Alert(Alert.AlertType.WARNING);

@@ -124,21 +124,21 @@ public class SaleManagementRepository {
         }
     }
 
-    public ObservableList<Integer> getQty() {
-        ObservableList<Integer> list = FXCollections.observableArrayList();
+    public int getQty() {
+        int qty = 0;
         try {
             Connection connection = DBConnection.getInstance().getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("SELECT DISTINCT quantity FROM medicine");
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
-                list.add(rs.getInt("quantity"));
+                qty= rs.getInt("quantity");
             }
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return list;
+        return qty;
     }
 
     public Integer setQTY(String value) {
@@ -160,4 +160,20 @@ public class SaleManagementRepository {
         }
         return qty;
     }
+
+    public void updateQTY(int qty, String medID){
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement statement = connection.prepareStatement("UPDATE medicine SET quantity = quantity - ? WHERE medicine_id = ?");
+
+            statement.setObject(1,qty);
+            statement.setObject(2,medID);
+
+            statement.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

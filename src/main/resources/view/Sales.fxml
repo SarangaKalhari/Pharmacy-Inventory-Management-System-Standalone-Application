@@ -49,8 +49,8 @@
                </font>
             </Button>
             <ComboBox fx:id="comboMedID" layoutX="86.0" layoutY="130.0" prefHeight="26.0" prefWidth="198.0" promptText="Medicine ID" />
-            <ComboBox fx:id="comboQTY" layoutX="86.0" layoutY="175.0" prefHeight="26.0" prefWidth="118.0" promptText="Qty" />
             <TextField fx:id="txtQty" layoutX="242.0" layoutY="174.0" prefHeight="27.0" prefWidth="127.0" promptText="QTY" style="-fx-border-color: black; -fx-border-radius: 10px;" />
+            <TextField fx:id="txtAll" layoutX="86.0" layoutY="174.0" prefHeight="27.0" prefWidth="138.0" promptText="QTY" style="-fx-border-color: black; -fx-border-radius: 10px;" />
          </children>
       </AnchorPane>
    </children>

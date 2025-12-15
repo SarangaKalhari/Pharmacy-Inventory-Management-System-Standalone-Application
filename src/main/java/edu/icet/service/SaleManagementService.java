@@ -64,6 +64,7 @@ public class SaleManagementService {
             sales.add(sale);
             total = total.add(item.getTotal());
             newID++;
+            repository.updateQTY(item.getQty(), item.getItemID());
         }
 
         if (total.compareTo(BigDecimal.valueOf(500)) > 0) {
@@ -76,7 +77,7 @@ public class SaleManagementService {
 
     }
 
-    public ObservableList<Integer> getQTYs() {
+    public int getQTYs() {
         return repository.getQty();
     }
 
