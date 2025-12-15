@@ -18,4 +18,7 @@ public class CheckReportService {
         return repository.loadLowStack(lowStock);
     }
 
+    public ObservableList<Medicine> loadExpireSoon(String expiredSoon) {
+        return  repository.expiredSoon(expiredSoon);
+    }
 }

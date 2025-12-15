@@ -81,6 +81,9 @@ public class CheckReportController implements Initializable {
     // 🟠 Expiring soon
     @FXML
     void loadExpiringSoon() {
+        list.clear();
+
+        tblReport.setItems(service.loadExpireSoon("Expire Soon"));
 
     }
 }

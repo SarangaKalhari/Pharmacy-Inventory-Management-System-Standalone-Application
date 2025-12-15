@@ -75,4 +75,21 @@ public class CheckReportRepository {
         }
         return list;
     }
+
+    public ObservableList<Medicine> expiredSoon(String expiredSoon) {
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM medicine\n" +
+                    "            WHERE expiry_date BETWEEN CURDATE()\n" +
+                    "            AND DATE_ADD(CURDATE(), INTERVAL 365 DAY)");
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                list.add(map(resultSet, expiredSoon));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
 }
