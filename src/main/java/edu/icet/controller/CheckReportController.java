@@ -63,17 +63,17 @@ public class CheckReportController implements Initializable {
     @FXML
     void loadLowStock() {
         list.clear();
+        tblReport.getItems().clear();
 
         tblReport.setItems(service.loadLowStock("LOW STOCK"));
-
-        btnLowStock.setDisable(true);
 
     }
 
 
     @FXML
     void loadExpired() {
-        tblReport.setItems(null);
+        tblReport.getItems().clear();
+
         list.clear();
         tblReport.setItems(service.loadExpired("EXPIRED"));
     }
@@ -81,6 +81,7 @@ public class CheckReportController implements Initializable {
     // 🟠 Expiring soon
     @FXML
     void loadExpiringSoon() {
+        tblReport.getItems().clear();
         list.clear();
 
         tblReport.setItems(service.loadExpireSoon("Expire Soon"));
