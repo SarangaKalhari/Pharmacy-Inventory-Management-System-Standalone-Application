@@ -23,4 +23,8 @@ public class SalesReportService {
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
         }
 
+    public ObservableList<SalesReport> getWeeklyReport() {
+        return repo.findWeekly();
+    }
+
 }

@@ -50,6 +50,7 @@ public class SalesReportController implements Initializable {
 
     @FXML
     void loadWeekly() {
+        loadUI(service.getWeeklyReport());
     }
 
     @FXML

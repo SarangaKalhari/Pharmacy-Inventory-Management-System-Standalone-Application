@@ -43,4 +43,35 @@ public class SalesReportRepository {
         return list;
     }
 
+    public ObservableList<SalesReport> findWeekly() {
+
+        ObservableList<SalesReport> list = FXCollections.observableArrayList();
+
+        String sql = """
+                SELECT invoice_id, date, net_amount
+                FROM sales_invoice
+                WHERE date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+                """;
+
+        try {
+            Connection con = DBConnection.getInstance().getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                list.add(
+                        new SalesReport(
+                                rs.getString("invoice_id"),
+                                rs.getTimestamp("date").toLocalDateTime().toLocalDate(),
+                                rs.getBigDecimal("net_amount")
+                        )
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }
