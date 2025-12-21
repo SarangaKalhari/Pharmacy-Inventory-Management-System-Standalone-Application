@@ -74,4 +74,36 @@ public class SalesReportRepository {
         }
         return list;
     }
+
+    public ObservableList<SalesReport> findMonthly() {
+
+        ObservableList<SalesReport> list = FXCollections.observableArrayList();
+
+        try {
+
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement statement = connection.prepareStatement("""
+                SELECT invoice_id, date, net_amount
+                FROM sales_invoice
+                WHERE MONTH(date) = MONTH(CURDATE())
+                  AND YEAR(date) = YEAR(CURDATE())
+                """);
+
+            ResultSet set = statement.executeQuery();
+
+            while (set.next()){
+                list.add(
+                        new SalesReport(
+                                set.getString("invoice_id"),
+                                set.getTimestamp("date").toLocalDateTime().toLocalDate(),
+                                set.getBigDecimal("net_amount")
+                        )
+                );
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
 }

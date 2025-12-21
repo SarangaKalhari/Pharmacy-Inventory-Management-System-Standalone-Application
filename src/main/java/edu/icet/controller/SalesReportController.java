@@ -55,6 +55,7 @@ public class SalesReportController implements Initializable {
 
     @FXML
     void loadMonthly() {
+        loadUI(service.getMonthlyReport());
     }
 
     private void loadUI(ObservableList<SalesReport> list) {

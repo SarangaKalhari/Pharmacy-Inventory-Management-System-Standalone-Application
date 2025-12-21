@@ -27,4 +27,8 @@ public class SalesReportService {
         return repo.findWeekly();
     }
 
+    public ObservableList<SalesReport> getMonthlyReport() {
+        return repo.findMonthly();
+    }
+
 }
