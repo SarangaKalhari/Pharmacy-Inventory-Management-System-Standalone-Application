@@ -1,6 +1,5 @@
 package edu.icet.controller.dashboards;
 
-import edu.icet.controller.LoginFormController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -58,7 +57,7 @@ public class AdminDashboardForm {
     @FXML
     void reportsOnAction(ActionEvent event) {
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/SaleReport.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/Report.fxml"))));
             stage.show();
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -87,4 +86,12 @@ public class AdminDashboardForm {
         }
     }
 
+    public void salesReportsOnAction(ActionEvent actionEvent) {
+        try {
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/SalesReport.fxml"))));
+            stage.show();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
