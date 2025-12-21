@@ -106,4 +106,30 @@ public class SalesReportRepository {
         }
         return list;
     }
+
+    public int getTotalItemsSold(LocalDate date) {
+
+        String sql = """
+                SELECT SUM(quantity) AS total_items
+                FROM sales_items si
+                JOIN sales_invoice inv ON si.invoice_id = inv.invoice_id
+                WHERE DATE(inv.date) = ?
+                """;
+
+        try {
+            Connection con = DBConnection.getInstance().getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            ps.setDate(1, Date.valueOf(date));
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("total_items");
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
