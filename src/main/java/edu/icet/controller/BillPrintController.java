@@ -11,6 +11,8 @@ import javafx.scene.layout.VBox;
 
 import java.math.BigDecimal;
 import java.net.URL;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 public class BillPrintController implements Initializable {
@@ -39,7 +41,7 @@ public class BillPrintController implements Initializable {
     }
 
     // 🔹 DATA PASS METHOD
-    public void passData(ObservableList<SaleDTO> list, String invoiceId) {
+    public void passData(ObservableList<SaleDTO> list, String invoiceId, Timestamp timestamp) {
 
         BigDecimal total = BigDecimal.ZERO;
 
@@ -47,7 +49,7 @@ public class BillPrintController implements Initializable {
 
         for (SaleDTO sale : list) {
 
-            total.add(sale.getTotal());
+            total = total.add(sale.getTotal());
 
             Label label = new Label(
                     sale.getItemID() + "   \t" +
@@ -63,6 +65,7 @@ public class BillPrintController implements Initializable {
         lblTotalAmount.setText(String.format("%.2f", total));
         lblDiscount.setText("0.00");
         lblNetAmount.setText(String.format("%.2f", total));
+        lblDateTime.setText(String.valueOf(timestamp));
     }
 
     // 🔹 PRINT BUTTON METHOD
