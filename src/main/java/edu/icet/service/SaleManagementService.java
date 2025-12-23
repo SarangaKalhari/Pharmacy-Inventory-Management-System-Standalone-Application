@@ -1,6 +1,5 @@
 package edu.icet.service;
 
-import edu.icet.controller.BillPrintController;
 import edu.icet.model.DTO.SaleDTO;
 import edu.icet.model.Entity.Sale;
 import edu.icet.repository.SaleManagementRepository;
@@ -8,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 
 public class SaleManagementService {
 
@@ -83,5 +83,9 @@ public class SaleManagementService {
 
     public Integer setQTY(String value) {
         return repository.setQTY(value);
+    }
+
+    public Timestamp getDateTime() {
+        return repository.getTime();
     }
 }
