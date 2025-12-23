@@ -64,6 +64,24 @@ public class SaleManagementRepository {
         return lastID;
     }
 
+    public Timestamp getTime() {
+        Timestamp timestamp = null;
+
+        try {
+            Connection connection = DBConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT date FROM sales_invoice ORDER BY CAST(SUBSTRING(invoice_id, 4) AS UNSIGNED) DESC LIMIT 1");
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()){
+                timestamp = rs.getTimestamp("date");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return timestamp;
+    }
+
     public int getID(){
         int lastID = 0;
         try {

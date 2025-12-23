@@ -90,7 +90,7 @@ public class SalesController implements Initializable {
             Parent root = loader.load();
 
         BillPrintController controller = loader.getController();
-        controller.passData(list, service.calInvoiceId());
+        controller.passData(list, service.calInvoiceId(), service.getDateTime());
 
             Stage stage = new Stage();
             stage.setTitle("Bill Preview");
