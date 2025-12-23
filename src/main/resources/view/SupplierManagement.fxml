@@ -5,6 +5,8 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -12,9 +14,9 @@
    <children>
       <AnchorPane layoutX="-2.0" layoutY="-9.0" prefHeight="656.0" prefWidth="944.0" style="-fx-background-color: white;">
          <children>
-            <AnchorPane prefHeight="90.0" prefWidth="944.0" style="-fx-background-color: #a7f29c;">
+            <AnchorPane prefHeight="90.0" prefWidth="944.0" style="-fx-background-color: #1E4439;">
                <children>
-                  <Label layoutX="375.0" layoutY="18.0" prefHeight="54.0" prefWidth="268.0" text="Supplier Management">
+                  <Label layoutX="375.0" layoutY="18.0" prefHeight="54.0" prefWidth="268.0" text="Supplier Management" textFill="#fffefe">
                      <font>
                         <Font name="Segoe UI Bold Italic" size="24.0" />
                      </font>
@@ -27,27 +29,27 @@
             <TextField fx:id="txtPhone" layoutX="22.0" layoutY="161.0" prefHeight="27.0" prefWidth="170.0" promptText="phone" style="-fx-border-color: black; -fx-border-radius: 10px;" />
             <TextField fx:id="txtContact" layoutX="638.0" layoutY="115.0" prefHeight="27.0" prefWidth="262.0" promptText="contact person" style="-fx-border-color: black; -fx-border-radius: 10px;" />
             <TextField fx:id="txtSupID" layoutX="22.0" layoutY="115.0" prefHeight="27.0" prefWidth="169.0" promptText="Supplier_ID" style="-fx-border-color: black; -fx-border-radius: 10px;" />
-            <Button layoutX="22.0" layoutY="233.0" mnemonicParsing="false" onAction="#addOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #f28135;" text="Add" textFill="WHITE">
+            <Button layoutX="22.0" layoutY="219.0" mnemonicParsing="false" onAction="#addOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #5A9CB5; -fx-background-radius: 20px;" text="Add" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="201.0" layoutY="233.0" mnemonicParsing="false" onAction="#viewOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #f28135;" text="View" textFill="WHITE">
+            <Button layoutX="192.0" layoutY="219.0" mnemonicParsing="false" onAction="#viewOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #FA6868; -fx-background-radius: 20px;" text="View" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="388.0" layoutY="233.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #f28135;" text="Update" textFill="WHITE">
+            <Button layoutX="376.0" layoutY="219.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #FAAC68; -fx-background-radius: 20px;" text="Update" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="577.0" layoutY="233.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #f28135;" text="Delete" textFill="WHITE">
+            <Button layoutX="586.0" layoutY="219.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #CF0F0F; -fx-background-radius: 20px;" text="Delete" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="14.0" />
                </font>
             </Button>
-            <TableView fx:id="tblSupplier" layoutX="22.0" layoutY="307.0" prefHeight="292.0" prefWidth="907.0" AnchorPane.bottomAnchor="56.80000000000001" AnchorPane.leftAnchor="22.399999999999977" AnchorPane.rightAnchor="14.799999999999955" AnchorPane.topAnchor="307.0">
+            <TableView fx:id="tblSupplier" layoutX="18.0" layoutY="283.0" prefHeight="292.0" prefWidth="907.0" AnchorPane.bottomAnchor="81.79999999999995" AnchorPane.leftAnchor="18.0" AnchorPane.rightAnchor="18.799999999999955" AnchorPane.topAnchor="283.0">
                <columns>
                   <TableColumn fx:id="colSupID" prefWidth="81.59997022151947" text="Supplier ID" />
                   <TableColumn fx:id="colCompanyName" prefWidth="139.9999771118164" text="Company Name" />
@@ -58,10 +60,34 @@
                   <TableColumn fx:id="colAdded" prefWidth="159.199951171875" text="Added at" />
                </columns>
             </TableView>
-            <Button layoutX="756.0" layoutY="233.0" mnemonicParsing="false" onAction="#reloadOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #f28135;" text="Reload" textFill="WHITE">
+            <Button layoutX="803.0" layoutY="219.0" mnemonicParsing="false" onAction="#reloadOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #8BAE66; -fx-background-radius: 20px;" text="Reload" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="14.0" />
                </font>
+            </Button>
+            <Button layoutX="766.0" layoutY="593.0" mnemonicParsing="false" onAction="#loginOnAction" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: #E2852E; -fx-border-color: black; -fx-border-radius: 15px; -fx-background-radius: 30px; -fx-border-width: 2;" text="  Log Out" textFill="#181616">
+               <font>
+                  <Font name="Segoe UI Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="21.0">
+                     <image>
+                        <Image url="@../icons/exit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="CENTER_RIGHT" layoutX="586.0" layoutY="592.0" mnemonicParsing="false" onAction="#dashboardOnAction" prefHeight="41.0" prefWidth="142.0" style="-fx-background-color: #90AB8B; -fx-background-radius: 30px; -fx-border-color: black; -fx-border-radius: 30px; -fx-cursor: hand; -fx-border-width: 2;" text="Dashboard" textFill="#181616">
+               <font>
+                  <Font name="Segoe UI Bold" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="31.0">
+                     <image>
+                        <Image url="@../icons/dashboard-monitor.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
             </Button>
          </children>
       </AnchorPane>
