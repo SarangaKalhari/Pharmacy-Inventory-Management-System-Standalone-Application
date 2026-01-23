@@ -16,35 +16,35 @@
          <children>
             <AnchorPane prefHeight="90.0" prefWidth="944.0" style="-fx-background-color: #1E4439; -fx-background-radius: 0 0 25 25;">
                <children>
-                  <Label layoutX="375.0" layoutY="18.0" prefHeight="54.0" prefWidth="268.0" text="Supplier Management" textFill="#fffefe">
+                  <Label layoutX="328.0" layoutY="18.0" prefHeight="54.0" prefWidth="288.0" text="Supplier Management" textFill="#fffefe">
                      <font>
-                        <Font name="Segoe UI Bold Italic" size="24.0" />
+                        <Font name="Segoe UI Bold Italic" size="26.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <TextField fx:id="txtCompanyName" layoutX="291.0" layoutY="115.0" prefHeight="27.0" prefWidth="261.0" promptText="Company name" style="-fx-border-color: black; -fx-border-radius: 10px;" />
-            <TextField fx:id="txtEmail" layoutX="638.0" layoutY="161.0" prefHeight="27.0" prefWidth="262.0" promptText="email" style="-fx-border-color: black; -fx-border-radius: 10px;" />
-            <TextField fx:id="txtAddress" layoutX="290.0" layoutY="161.0" prefHeight="27.0" prefWidth="262.0" promptText="address" style="-fx-border-color: black; -fx-border-radius: 10px;" />
-            <TextField fx:id="txtPhone" layoutX="22.0" layoutY="161.0" prefHeight="27.0" prefWidth="170.0" promptText="phone" style="-fx-border-color: black; -fx-border-radius: 10px;" />
-            <TextField fx:id="txtContact" layoutX="638.0" layoutY="115.0" prefHeight="27.0" prefWidth="262.0" promptText="contact person" style="-fx-border-color: black; -fx-border-radius: 10px;" />
-            <TextField fx:id="txtSupID" layoutX="22.0" layoutY="115.0" prefHeight="27.0" prefWidth="169.0" promptText="Supplier_ID" style="-fx-border-color: black; -fx-border-radius: 10px;" />
+            <TextField fx:id="txtCompanyName" layoutX="334.0" layoutY="115.0" prefHeight="27.0" prefWidth="261.0" promptText="Company name" style="-fx-border-color: black; -fx-border-radius: 10px; -fx-border-width: 2;" />
+            <TextField fx:id="txtEmail" layoutX="657.0" layoutY="161.0" prefHeight="27.0" prefWidth="262.0" promptText="email" style="-fx-border-color: black; -fx-border-radius: 10px; -fx-border-width: 2;" />
+            <TextField fx:id="txtAddress" layoutX="333.0" layoutY="161.0" prefHeight="27.0" prefWidth="262.0" promptText="address" style="-fx-border-color: black; -fx-border-radius: 10px; -fx-border-width: 2;" />
+            <TextField fx:id="txtPhone" layoutX="22.0" layoutY="161.0" prefHeight="30.0" prefWidth="262.0" promptText="phone" style="-fx-border-color: black; -fx-border-radius: 10px; -fx-border-width: 2;" />
+            <TextField fx:id="txtContact" layoutX="657.0" layoutY="115.0" prefHeight="27.0" prefWidth="262.0" promptText="contact person" style="-fx-border-color: black; -fx-border-radius: 10px; -fx-border-width: 2;" />
+            <TextField fx:id="txtSupID" layoutX="22.0" layoutY="115.0" prefHeight="30.0" prefWidth="262.0" promptText="Supplier_ID" style="-fx-border-color: black; -fx-border-radius: 10px; -fx-border-width: 2;" />
             <Button layoutX="22.0" layoutY="219.0" mnemonicParsing="false" onAction="#addOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #5A9CB5; -fx-background-radius: 20px;" text="Add" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="192.0" layoutY="219.0" mnemonicParsing="false" onAction="#viewOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #FA6868; -fx-background-radius: 20px;" text="View" textFill="WHITE">
+            <Button layoutX="194.0" layoutY="219.0" mnemonicParsing="false" onAction="#viewOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #FA6868; -fx-background-radius: 20px;" text="View" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="376.0" layoutY="219.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #FAAC68; -fx-background-radius: 20px;" text="Update" textFill="WHITE">
+            <Button layoutX="419.0" layoutY="219.0" mnemonicParsing="false" onAction="#updateOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #FAAC68; -fx-background-radius: 20px;" text="Update" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="586.0" layoutY="219.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #CF0F0F; -fx-background-radius: 20px;" text="Delete" textFill="WHITE">
+            <Button layoutX="638.0" layoutY="219.0" mnemonicParsing="false" onAction="#deleteOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #CF0F0F; -fx-background-radius: 20px;" text="Delete" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="14.0" />
                </font>
@@ -60,7 +60,7 @@
                   <TableColumn fx:id="colAdded" prefWidth="159.199951171875" text="Added at" />
                </columns>
             </TableView>
-            <Button layoutX="803.0" layoutY="219.0" mnemonicParsing="false" onAction="#reloadOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #8BAE66; -fx-background-radius: 20px;" text="Reload" textFill="WHITE">
+            <Button layoutX="825.0" layoutY="219.0" mnemonicParsing="false" onAction="#reloadOnAction" prefHeight="27.0" prefWidth="89.0" style="-fx-background-color: #8BAE66; -fx-background-radius: 20px;" text="Reload" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="14.0" />
                </font>
