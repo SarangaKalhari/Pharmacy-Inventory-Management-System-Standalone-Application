@@ -50,7 +50,7 @@ public class PharmacistDashboardForm {
     void medicineOnAction(ActionEvent event) {
 
         try {
-            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/MedicineManagement.fxml"))));
+            stage.setScene(new Scene(FXMLLoader.load(getClass().getResource("/view/PharmacistMedicine.fxml"))));
             stage.setTitle("Medicine Management");
             stage.show();
         } catch (IOException e) {
