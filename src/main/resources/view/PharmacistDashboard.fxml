@@ -9,6 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="667.0" prefWidth="693.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.dashboards.PharmacistDashboardForm">
+
     <children>
         <AnchorPane prefHeight="667.0" prefWidth="231.0" style="-fx-background-color: white;">
             <children>
@@ -47,7 +48,7 @@
                 </Pane>
             <ImageView fitHeight="90.0" fitWidth="98.0" layoutX="67.0" layoutY="26.0">
                <image>
-                  <Image url="@../icons/pharmacist%20profile.jpg" />
+                  <Image url="@../icons/pharmacist profile.jpg" />
                </image>
             </ImageView>
             </children>
