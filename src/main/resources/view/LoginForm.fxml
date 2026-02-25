@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.PasswordField?>
+
+<AnchorPane prefHeight="499.0" prefWidth="802.0" style="-fx-background-color: #ffffff; -fx-background-radius: 20px;" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.icet.controller.LoginFormController" >
+
+   <children>
+      <Pane prefHeight="501.0" prefWidth="355.0" style="-fx-background-radius: 0 20 20 0; -fx-background-color: #1E4439;">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="21.0" layoutY="114.0" lineSpacing="4.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="244.0" prefWidth="313.0" text="Pharmacy &#10;Inventory &#10;System &#10;Management" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman Bold Italic" size="40.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <RadioButton fx:id="radioPharmacist" layoutX="507.0" layoutY="72.0" mnemonicParsing="false"  prefHeight="30.0" prefWidth="138.0" text="Pharmacist">
+         <font>
+            <Font name="Verdana Bold" size="14.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="radioGroup" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="radioAdmin" layoutX="373.0" layoutY="72.0" mnemonicParsing="false"  prefHeight="30.0" prefWidth="114.0" text="Admin" toggleGroup="$radioGroup">
+         <font>
+            <Font name="Verdana Bold" size="14.0" />
+         </font>
+      </RadioButton>
+      <RadioButton fx:id="radioCashier" layoutX="658.0" layoutY="72.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="114.0" text="Cashier" toggleGroup="$radioGroup">
+         <font>
+            <Font name="Verdana Bold" size="14.0" />
+         </font>
+      </RadioButton>
+      <TextField fx:id="txtUsername" layoutX="478.0" layoutY="221.0" prefHeight="30.0" prefWidth="206.0" promptText="Username" style="-fx-border-color: black; -fx-border-radius: 10px;" />
+      <PasswordField fx:id="txtPassword" layoutX="478.0" layoutY="289.0" prefHeight="30.0" prefWidth="206.0" promptText="Password" style="-fx-border-color: black; -fx-border-radius: 10px;" />
+      <Button layoutX="529.0" layoutY="380.0" mnemonicParsing="false" onAction="#loginOnAction" prefHeight="38.0" prefWidth="95.0" style="-fx-background-color: black; -fx-background-radius: 20px; -fx-font-style: white;" text="Login" textFill="#f2f0f0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
